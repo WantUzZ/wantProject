@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>wantu Project</title>
+
+    <!-- jq -->
+    <script src="/lib/jquery/jquery-3.2.1.min.js"></script>
+
+    <!-- bootstrap -->
+    <script src="/lib/bootstrap/bootstrap.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.css">
+
+    <!-- bootstrapDialog -->
+    <script src="/lib/bootstrap/bootstrap-dialog.js"></script>
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap-dialog.min.css">
+
+    <style>
+        .container {
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            width: 30%;
+            height: 30%;
+        }
+        .container .panel {
+            border-radius: 0px;
+        }
+        .link {
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 24px;
+        }
+        .container .panel .panel-heading {
+            font-size: 24px;
+            color: #fff;
+            border-radius: 0px 0px 0 0;
+            background-color: #00008B;
+        }
+        .form-group {
+            height: 30px;
+        }
+        .line-h {
+            height: 34px;
+            text-align: left;
+            line-height: 34px;
+        }
+        .line-m {
+            margin-left: -10px;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: #eeeeee" class="task-font">
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">wantProject</div>
+        <div class="panel-body">
+            <div class="form-group" style="margin-top:20px">
+                <label class="col-sm-3 line-h">用户名</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="user_name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 line-h text-left">密码</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" id="pass_word">
+                </div>
+            </div>
+            <button type='button' class="btn"
+                    style="float:right;margin-right:15px;margin-top:20px;width:20%;
+                    background-color:#eee;border-color:#9d9898"
+                    onclick="login()">登 录
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    function init(){
+        $('#pass_word').focus();
+		$(document).keyup(function(event){
+			if(event.keyCode ==13){
+				login();
+			}
+		});
+    };
+	function login() {
+		var  username = $('#user_name').val();
+		var  password = $('#pass_word').val();
+		var data = {"username": username, "password": password};
+		$.ajax({
+			url: '/api/user',
+			type: 'POST',
+			data: data,
+			success: function (data) {
+				console.log(data)
+				if (data.tag === 'success') {
+					location.href = 'index';
+				} else {
+					BootstrapDialog.show({title: '登陆失败', message: data.message})
+				}
+			},
+			error: function (data, status, e) {
+				console.log(data,status,e)
+				BootstrapDialog.show({title: '登陆失败', message: e.toString()})
+			}
+		});
+		$('button').attr('disabled',true);
+		setTimeout(function(){
+			$('button').attr('disabled',false);
+		},2000)
+	};
+	init();
+</script>
+</body>
+</html>
