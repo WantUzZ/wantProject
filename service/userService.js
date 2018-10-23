@@ -2,10 +2,13 @@
 function login(username,pwd){
   /** */
   console.info('login...')
-  if(username === 'want' && pwd === '12345'){
-      return true;
-  }else
-  return false;
+  return new Promise((resolve,reject)=>{
+    if(username === 'want' && pwd === '123456'){
+      resolve(true);
+    }else{
+      resolve(false);
+    }
+  });
 }
 
 module.exports = {

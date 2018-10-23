@@ -1,11 +1,13 @@
 const router = require('express').Router();
 
 router.use('*',(req,res,next)=>{
-  console.info(`${req.headers.referer} ${req.method} ${req.url} query:${JSON.stringify(req.query)} body:${JSON.stringify(req.body)}`);
+    if(req.headers.referer){
+      console.info(`${req.headers.referer} ${req.method} ${req.url} query:${JSON.stringify(req.query)} body:${JSON.stringify(req.body)}`);
+    }
     next();
 })
 
-router.use('/',(req,res)=>{
+router.get('/',(req,res)=>{
   res.redirect('/view/login');
 })
 

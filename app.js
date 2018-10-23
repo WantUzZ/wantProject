@@ -10,11 +10,13 @@ const config = require('./config.js')[process.env.NODE_ENV || 'development'];
 const redisStore = require('connect-redis')(session);
 const {app_logger,error_logger} = require('./log.js');
 
+//处理静态的requests请求
+app.use(express.static(path.join(__dirname, 'public')));
 //设置view路径和模版
 app.set('views',path.join(__dirname,'views'));
 //设置渲染引擎 ejs/jade
-app.set('view engine is ejs',require('ejs').express);
-//-- app.set('view engine is ejs','ejs') 
+app.set('view engine is ejs','ejs');
+//-- app.set('view engine is jade','jade') 
 
 
 //app.use配置
@@ -48,11 +50,8 @@ app.use((err,req,res,next)=>{
     error_logger(err);
     res.status(500).send(err.stack);
   }else{
-    res.status(500).send(`Web error : ${error.toString()}`);
+    res.render('./error.ejs');
   }
-  //渲染错误页面
-  res.status(err.status||500);
-  res.render('error');
 })
 
 app.listen(config.system_port,()=>{
