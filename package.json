@@ -23,7 +23,7 @@
     "request": "^2.83.0",
     "request-json": "^0.6.2",
     "request-promise": "^4.2.2",
-    "sequelize": "^4.27.0"
+    "sequelize": "^5.15.1"
   },
   "directories": {
     "doc": "doc"
