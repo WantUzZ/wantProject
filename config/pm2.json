@@ -1,0 +1,15 @@
+{
+	"apps":
+	[{
+		"name": "wantProject",
+		"script": "/Users/wangtao/nodespace/myself/wantProject/app.js",
+		"cwd": "/Users/wangtao/nodespace/myself/wantProject",
+		"instances": 1,
+		"exec_mode": "cluster_mode",
+		"max_memory_restart": "100M",
+		"max_restarts": 20,
+		"watch": false,
+		"error_file": "./logs/pm2.wantProject.error.log",
+		"out_file": "./logs/pm2.wantProject.access.log"
+	}]
+}
