@@ -19,7 +19,7 @@
     "lodash": "^4.17.10",
     "log4js": "^2.3.10",
     "moment": "^2.21.0",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "request": "^2.83.0",
     "request-json": "^0.6.2",
     "request-promise": "^4.2.2",
