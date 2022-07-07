@@ -18,7 +18,7 @@
     "express-session": "^1.15.6",
     "lodash": "^4.17.10",
     "log4js": "^2.3.10",
-    "moment": "^2.21.0",
+    "moment": "^2.29.4",
     "redis": "^2.8.0",
     "request": "^2.83.0",
     "request-json": "^0.6.2",
